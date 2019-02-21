@@ -57,7 +57,6 @@ public class EditPage {
         txtIntroduced.clear();
         txtIntroduced.sendKeys(values.get(1));
 
-
         Select dropdown= new Select(dropCompany);
         dropdown.selectByVisibleText(values.get(2));
     }

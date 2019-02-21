@@ -11,7 +11,10 @@ import base.DriverHandler;
 import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 
 public class Hook{
 
@@ -35,9 +38,23 @@ public class Hook{
     @After
     public void TearDownTest(Scenario scenario){
 
-        if(scenario.isFailed()){
+      /*  if(scenario.isFailed()){
             System.out.println(scenario.getName() + " failed.");
+        }*/
+        if (scenario.isFailed()) {
+            try {
+                scenario.write("Current Page URL is " + driver.getCurrentUrl());
+                // byte[] screenshot = getScreenshotAs(OutputType.BYTES);
+                byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+                scenario.embed(screenshot, "image/png");
+            } catch (WebDriverException somePlatformsDontSupportScreenshots) {
+
+            }
+
+
+
         }
 
+        driver.quit();
     }
 }

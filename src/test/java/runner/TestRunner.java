@@ -14,10 +14,11 @@ import org.testng.annotations.*;
 //@RunWith(Cucumber.class)
 @CucumberOptions(
         features = {"src/test/java/features"},
-        format = {"json:target/cucumber.json", "html:target/site/cucumber-pretty"},
+        format = {"json:target/cucumber.json", "html:target/site/cucumber-pretty","rerun:target/cucumber-reports/rerun-reports/rerun.txt"},
         glue = {"steps"},
         //~ will skip the features with that specific tag
         tags = {"@smoke","~@skipped_temporal"},
+        dryRun = false,
         monochrome = true
 )
 

@@ -7,6 +7,7 @@
 package utils;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -42,5 +43,27 @@ public class Utils {
         return existsElement(driver,webElement)?webElement:null;
 
     }
+    /***
+     * function in case if any element could not be retrieved
+     * @param by
+     * @return
+     */
+
+    public boolean retryingFindClick(WebDriver driver,By by) {
+        boolean result = false;
+        int attempts = 0;
+        while (attempts < 2) {
+            try {
+                driver.findElement(by).click();
+                result = true;
+                break;
+            } catch (StaleElementReferenceException e) {
+
+            }
+            attempts++;
+        }
+        return result;
+    }
+
 
 }

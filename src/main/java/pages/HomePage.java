@@ -57,14 +57,7 @@ public class HomePage {
 
         Boolean isPresent = Utils.existsElement( driver, locator);
         if(isPresent) {
-            ExpectedCondition e = new ExpectedCondition<Boolean>() {
-                public Boolean apply(WebDriver d) {
-                    return (linkCookies.getSize().height > 10);
-                }
-            };
-            WebDriverWait wait = (new WebDriverWait(driver, 10));
-            wait.until(e);
-            linkCookies.click();
+           Utils.expectedConditions(driver,linkCookies).click();
         }
     }
 
@@ -82,12 +75,9 @@ public class HomePage {
     public void LookForSubitem() {
         Actions action  = new Actions(driver);
         action.moveToElement(lblmenu).clickAndHold(lblmenu).perform();
-
         WebDriverWait wait = (new WebDriverWait(driver, 10));
         wait.until(ExpectedConditions.elementToBeClickable(lblsubmenu));
-
         lblsubmenu.click();
-
     }
 
 

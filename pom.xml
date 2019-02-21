@@ -36,7 +36,6 @@
                 <version>2.21.0</version>
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
-
                 </configuration>
             </plugin>
             <plugin>
@@ -98,6 +97,12 @@
             <version>${cucumber.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.yaml/snakeyaml -->
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>1.23</version>
+        </dependency>
 
         <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-picocontainer -->
         <dependency>
